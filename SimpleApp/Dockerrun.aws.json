@@ -1,18 +1,12 @@
 {
 	"AWSEBDockerrunVersion": 1,
-	"containerDefinitions": [		
-		{
-			"name": "simpleapp",
-			"image": "parnabbasak/simpleapp",
-			"hostname": "simpleapp",
-			"essential": true,
-			"memory": 128,
-			"portMappings": [
-                {
-                    "hostPort": 9090,
-                    "containerPort": 5000
-                }
-            ]
-		}
-	]
-}	
+	"Image": {
+    	"Name": "parnabbasak/simpleapp",
+    	"Update": "true"
+  	},
+ 	"Ports": [
+    	{
+      "ContainerPort": "8081"
+    	}
+    ]	
+}

@@ -10,5 +10,7 @@ RUN mvn package
 
 COPY target/*.jar /app.jar
 
+RUN cd / && ls -lart
+
 ENTRYPOINT ["java","-jar","/app.jar"]
 EXPOSE 8081

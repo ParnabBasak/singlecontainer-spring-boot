@@ -8,13 +8,10 @@ COPY pom.xml /tmp/
 WORKDIR /tmp/
 RUN mvn package
 
-RUN cd /tmp/target
+RUN cd target
 RUN ls -lart
 
-CMD [“java”, “-jar”, “/tmp/target/*.jar”]
+COPY target/*.jar /app.jar
+
+ENTRYPOINT ["java","-jar","/app.jar"]
 EXPOSE 8081
-
-
-
-
- 

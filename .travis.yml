@@ -15,7 +15,7 @@ services:
 install: true
 
 script:
-  - ./mvnw clean install -DskipTests
+  - cd SimpleApp && ./mvnw clean install -DskipTests
 
 after_success:
   # Build Images

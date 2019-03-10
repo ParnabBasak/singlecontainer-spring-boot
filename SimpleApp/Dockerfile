@@ -8,7 +8,7 @@ COPY pom.xml /tmp/
 WORKDIR /tmp/
 RUN mvn package
 
-RUN pwd
+RUN cd target
 RUN ls -lart
 
 COPY target/*.jar /app.jar

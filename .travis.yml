@@ -19,7 +19,7 @@ script:
 
 after_success:
   # Build Images
-  - docker build -t parnabbasak/simpleapp . 
+  - docker build -t parnabbasak/simpleapp -f ./Dockerfile.dev . 
 
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin

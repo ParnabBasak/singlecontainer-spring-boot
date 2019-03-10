@@ -1,6 +1,7 @@
-FROM java:8
+FROM openjdk:8-jdk-alpine
 MAINTAINER Parnab
-COPY target/SimpleApp-0.0.1-SNAPSHOT.jar /opt/lib/
-ENTRYPOINT ["/usr/bin/java"]
-CMD ["-jar", "/opt/lib/SimpleApp-0.0.1-SNAPSHOT.jar"]
+VOLUME /tmp
+ARG JAR_FILE
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
 EXPOSE 8081

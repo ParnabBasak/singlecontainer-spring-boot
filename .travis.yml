@@ -30,10 +30,10 @@ after_success:
 deploy:
     provider: elasticbeanstalk
     region: "us-east-1"
-    app: "multicontainer-spring-boot"
-    env: "MulticontainerSpringBoot-env"
+    app: "singlecontainer-spring-boot"
+    env: "SinglecontainerSpringBoot-env"
     bucket_name: "elasticbeanstalk-us-east-1-281072246466"
-    bucket_path: "multicontainer-spring-boot"
+    bucket_path: "singlecontainer-spring-boot"
     on:
       branch: master
     access_key_id: $AWS_ACCESS_KEY

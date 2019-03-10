@@ -1,0 +1,14 @@
+FROM openjdk:8-jdk-alpine
+MAINTAINER Parnab
+VOLUME /tmp
+
+FROM maven:3.5.2-jdk-8-alpine AS MAVEN_TOOL_CHAIN
+COPY src /tmp/src/
+COPY pom.xml /tmp/
+WORKDIR /tmp/
+RUN mvn package
+
+COPY target/*.jar /app.jar
+
+ENTRYPOINT ["java","-jar","/app.jar"]
+EXPOSE 8081

@@ -1,0 +1,41 @@
+language: java
+
+jdk: 
+  - oraclejdk8
+
+cache:
+  directories:
+  - $HOME/.m2
+
+sudo: required
+
+services:
+- docker
+
+install: true
+
+script:
+  - ./mvnw clean install -DskipTests
+
+after_success:
+  # Build Images
+  - docker build -t parnabbasak/simpleapp . 
+
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+  # Take the built images and push to docker hub
+  - docker push parnabbasak/simpleapp
+
+deploy:
+    provider: elasticbeanstalk
+    region: "us-east-1"
+    app: "multicontainer-spring-boot"
+    env: "MulticontainerSpringBoot-env"
+    bucket_name: "elasticbeanstalk-us-east-1-281072246466"
+    bucket_path: "multicontainer-spring-boot"
+    on:
+      branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key:
+      secure: "$AWS_SECRET_KEY"
